@@ -28,10 +28,13 @@ defmodule Recruitbot.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.1.0"},
-     {:phoenix_html, "~> 2.3"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:gettext, "~> 0.9"},
-     {:cowboy, "~> 1.0"}]
+    [
+      {:phoenix, "~> 1.1.0"},
+      {:phoenix_html, "~> 2.3"},
+      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:gettext, "~> 0.9"},
+      {:cowboy, "~> 1.0"},
+      {:roombex, "~> 0.0.1"},
+    ]
   end
 end
