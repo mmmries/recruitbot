@@ -3,15 +3,16 @@ defmodule Recruitbot.DJSupervisor do
   require Logger
 
   def start_link(dj_opts) do
-    Supervisor.start_link(__MODULE__, [dj_opts], name: __MODULE__)
+    Supervisor.start_link(__MODULE__, dj_opts, name: __MODULE__)
   end
 
   def init(dj_opts) do
-    publisher_pid = spawn_link(__MODULE__, publish_roomba_updates, [])
+    publisher_pid = spawn_link(&publish_roomba_updates/0)
+    Process.register(publisher_pid, :publisher)
 
     dj_opts = Keyword.put(dj_opts, :report_to, publisher_pid)
     children = [
-      worker(Roombex.DJ, [dj_opts])
+      worker(Roombex.DJ, [dj_opts, [name: :dj]])
     ]
     supervise(children, strategy: :one_for_all)
   end
