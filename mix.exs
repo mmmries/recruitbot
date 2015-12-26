@@ -35,6 +35,7 @@ defmodule Recruitbot.Mixfile do
       {:gettext, "~> 0.9"},
       {:cowboy, "~> 1.0"},
       {:roombex, "~> 0.0.1"},
+      {:"erlang-serial", github: "knewter/erlang-serial"},
     ]
   end
 end
