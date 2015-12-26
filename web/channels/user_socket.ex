@@ -3,6 +3,7 @@ defmodule Recruitbot.UserSocket do
 
   ## Channels
   # channel "rooms:*", Recruitbot.RoomChannel
+  channel "roomba", Recruitbot.RoombaChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
