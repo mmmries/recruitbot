@@ -23,7 +23,7 @@ config :recruitbot, :dj_opts,
   tty: '/dev/ttyAMA0',
   speed: 115_200,
   listen_to: [:bumps_and_wheeldrops, :light_bumper],
-  listen_interval: 100
+  listen_interval: 33
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
