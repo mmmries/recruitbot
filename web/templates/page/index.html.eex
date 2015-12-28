@@ -1,8 +1,3 @@
-<div class="jumbotron">
-  <h2>Roomba <%= @hostname %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
-</div>
-
 <div class="row marketing">
   <div class="col-lg-3"></div>
   <div class="col-lg-6">
@@ -20,4 +15,25 @@
     </svg>
   </div>
   <div class="col-lg-3"></div>
+</div>
+
+<div class="jumbotron">
+  <h2>Send Commands</h2>
+  <table class="drive-controls">
+    <tr>
+      <td></td>
+      <td><button id="forward">↑</button></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><button id="left">←</button></td>
+      <td><button id="stop">●</td>
+      <td><button id="right">→</button></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button id="backward">↓</button></td>
+      <td></td>
+    </tr>
+  </table>
 </div>

@@ -15,8 +15,29 @@ let getByClass = function(css) {
 // Now that you are connected, you can join channels with a topic:
 let channel = socket.channel("roomba", {})
 channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+  .receive("ok", resp => {
+    document.getElementById("forward").addEventListener("mousedown", _event => {
+      console.log("forward")
+      channel.push("drive", {velocity: 100, radius: 0})
+    })
+    document.getElementById("backward").addEventListener("mousedown", _event => {
+      console.log("backward")
+      channel.push("drive", {velocity: -100, radius: 0})
+    })
+    document.getElementById("left").addEventListener("mousedown", _event => {
+      console.log("left")
+      channel.push("drive", {velocity: 100, radius: 10})
+    })
+    document.getElementById("right").addEventListener("mousedown", _event => {
+      console.log("right")
+      channel.push("drive", {velocity: 100, radius: -10})
+    })
+    document.addEventListener("mouseup", function(ev){
+      console.log("stop!")
+      channel.push("drive", {velocity: 0, radius: 0})
+    })
+    console.log("Joined successfully", resp)
+  }).receive("error", resp => { console.log("Unable to join", resp) })
 
 channel.on("sensor_update", sensors => {
   getByClass("bumper_left").setAttribute("fill", sensors.bumper_left == 0 ? "black" : "red")
