@@ -1,36 +1,39 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}", name: "Phoenix!" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
+<div class="row marketing">
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" fill="lightgrey" r="45" stroke="black"></circle>
+      <circle cx="50" cy="50" fill="grey" r="18" stroke="black"></circle>
+      <path class="bumper_left" d="M 7,40 Q 15,7 50,6 L 50,12 Q 18,14 14,40 z" fill="black" stroke="black"></path>
+      <path class="bumper_right" d="M 50,6 Q 85,7 93,40 L 87,40 Q 82,14 50,12 z" fill="black" stroke="black"></path>
+      <rect class="light_bumper_left_center" display="none" fill="pink" height="2" transform="rotate(-7, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
+      <rect class="light_bumper_left_front" display="none" fill="pink" height="2" transform="rotate(-26, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
+      <rect class="light_bumper_left" display="none" fill="pink" height="2" transform="rotate(-45, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
+      <rect class="light_bumper_right_center" display="none" fill="pink" height="2" transform="rotate(7, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
+      <rect class="light_bumper_right_front" display="none" fill="pink" height="2" transform="rotate(26, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
+      <rect class="light_bumper_right" display="none" fill="pink" height="2" transform="rotate(45, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
+    </svg>
+  </div>
+  <div class="col-lg-3"></div>
 </div>
 
-<div class="row marketing">
-  <div class="col-lg-6">
-    <h4>Resources</h4>
-    <ul>
-      <li>
-        <a href="http://phoenixframework.org/docs/overview">Guides</a>
-      </li>
-      <li>
-        <a href="http://hexdocs.pm/phoenix">Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-    </ul>
-  </div>
-
-  <div class="col-lg-6">
-    <h4>Help</h4>
-    <ul>
-      <li>
-        <a href="http://groups.google.com/group/phoenix-talk">Mailing list</a>
-      </li>
-      <li>
-        <a href="http://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">@elixirphoenix</a>
-      </li>
-    </ul>
-  </div>
+<div class="jumbotron">
+  <h2>Send Commands</h2>
+  <table class="drive-controls">
+    <tr>
+      <td></td>
+      <td><button id="forward">↑</button></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><button id="left">←</button></td>
+      <td><button id="stop">●</td>
+      <td><button id="right">→</button></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button id="backward">↓</button></td>
+      <td></td>
+    </tr>
+  </table>
 </div>
