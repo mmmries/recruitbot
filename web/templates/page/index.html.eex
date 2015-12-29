@@ -6,12 +6,12 @@
       <circle cx="50" cy="50" fill="grey" r="18" stroke="black"></circle>
       <path class="bumper_left" d="M 7,40 Q 15,7 50,6 L 50,12 Q 18,14 14,40 z" fill="black" stroke="black"></path>
       <path class="bumper_right" d="M 50,6 Q 85,7 93,40 L 87,40 Q 82,14 50,12 z" fill="black" stroke="black"></path>
-      <rect class="light_bumper_left_center" display="none" fill="pink" height="2" transform="rotate(-7, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
-      <rect class="light_bumper_left_front" display="none" fill="pink" height="2" transform="rotate(-26, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
-      <rect class="light_bumper_left" display="none" fill="pink" height="2" transform="rotate(-45, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
-      <rect class="light_bumper_right_center" display="none" fill="pink" height="2" transform="rotate(7, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
-      <rect class="light_bumper_right_front" display="none" fill="pink" height="2" transform="rotate(26, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
-      <rect class="light_bumper_right" display="none" fill="pink" height="2" transform="rotate(45, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
+      <rect class="light_bumper_left_center" display="none" fill="red" height="2" transform="rotate(-7, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
+      <rect class="light_bumper_left_front" display="none" fill="red" height="2" transform="rotate(-26, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
+      <rect class="light_bumper_left" display="none" fill="red" height="2" transform="rotate(-45, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
+      <rect class="light_bumper_right_center" display="none" fill="red" height="2" transform="rotate(7, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
+      <rect class="light_bumper_right_front" display="none" fill="red" height="2" transform="rotate(26, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
+      <rect class="light_bumper_right" display="none" fill="red" height="2" transform="rotate(45, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
     </svg>
   </div>
   <div class="col-lg-3"></div>
@@ -34,6 +34,13 @@
       <td></td>
       <td><button id="backward">↓</button></td>
       <td></td>
+    </tr>
+  </table>
+  <br />
+  <table class="other-controls">
+    <tr>
+      <td><button id="safe">Safe</button></td>
+      <td><button id="reset">Reset</button></td>
     </tr>
   </table>
 </div>

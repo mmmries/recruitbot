@@ -32,6 +32,14 @@ channel.join()
       console.log("right")
       channel.push("drive", {velocity: 100, radius: -10})
     })
+    document.getElementById("reset").addEventListener("click", _event => {
+      console.log("reset")
+      channel.push("reset", {})
+    })
+    document.getElementById("safe").addEventListener("click", _event => {
+      console.log("safe")
+      channel.push("safe", {})
+    })
     document.addEventListener("mouseup", function(ev){
       console.log("stop!")
       channel.push("drive", {velocity: 0, radius: 0})

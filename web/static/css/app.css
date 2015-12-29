@@ -51,9 +51,13 @@ form.link, form.button {
   margin: 35px 0;
 }
 
+table { margin: auto; }
+
 .drive-controls {
-  margin: auto;
   font-size: 45pt;
+}
+.other-controls {
+  font-size: 18pt;
 }
 
 /* Responsive: Portrait tablets and up */
