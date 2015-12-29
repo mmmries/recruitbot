@@ -34,8 +34,7 @@ defmodule Recruitbot.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.9"},
       {:cowboy, "~> 1.0"},
-      {:roombex, "~> 0.0.1"},
-      {:"erlang-serial", github: "knewter/erlang-serial"},
+      {:roombex, "~> 0.0.2"},
     ]
   end
 end
