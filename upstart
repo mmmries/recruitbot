@@ -1,0 +1,12 @@
+start on runlevel [2345]
+stop on runlevel[!2345]
+
+script
+  cd /opt/recruitbot
+  export HOME=/root
+  export MIX_ENV=prod
+  export LC_CTYPE=en_US.UTF-8
+  export PATH=/opt/elixir-1.1.1/bin:/root/.mix/:$PATH
+  export PORT=80
+  elixir --sname recruitbot --cookie pi -S mix phoenix.server
+end script

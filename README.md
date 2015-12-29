@@ -53,3 +53,16 @@ The `development_wifi` will be preferred (higher priority) and the `pifi` networ
 Now on your raspberry-pi terminal you can run `sudo ifup wlan0` and it should load the configuration and try to connect to the wifi.
 
 ## Loading the Software
+
+In order to actually run the recruitbot software you need to have it on the raspberry pi.
+SSH into the raspberry pi and run:
+
+```
+sudo su -
+cd /opt
+git clone https://github.com/mmmries/recruitbot.git
+cd recruitbot
+MIX_ENV=prod mix do deps.get, compile, phoenix.digest
+cp ./upstart /etc/init/recruitbot.conf
+start recruitbot
+```
