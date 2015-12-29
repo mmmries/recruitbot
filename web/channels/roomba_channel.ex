@@ -8,4 +8,12 @@ defmodule Recruitbot.RoombaChannel do
     DJ.command(:dj, Roombex.drive(velocity, radius))
     {:reply, {:ok, %{}}, socket}
   end
+  def handle_in("reset", %{}, socket) do
+    DJ.reset(:dj)
+    {:reply, {:ok, %{}}, socket}
+  end
+  def handle_in("safe", %{}, socket) do
+    DJ.command(:dj, Roombex.safe)
+    {:reply, {:ok, %{}}, socket}
+  end
 end
