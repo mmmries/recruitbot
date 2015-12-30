@@ -10,6 +10,18 @@ A Project to make easily hackable robots that we can use for robotics competitio
 
 ## Preparing the Pi
 
+__Initial Operating System Setup__
+I'm using the [2015-11-21 Jessie Lite](https://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2015-11-24/2015-11-21-raspbian-jessie-lite.zip) image.
+After you have burned it to an SD card and booted it up you can login (username `pi`, password `raspberry`).
+Now run `sudo raspi-config` and make the following changes.
+
+* Expand the file system to use the whole MicroSD Card
+* Change the default user password (optional)
+* Change the default locale to en-US UTF-8 UTF-8
+* Change the timezone to America/Denver
+* Change the keyboard layout to a US layout
+* Change the hostname to piN (I name my name `pi1`, `pi2`, etc)
+
 __Setup Wifi Credentials__
 Your Wifi credentials will depend on the network that you connect to.
 We like to bring our own WiFi router to events and always try to configure out robots to connect to that router.
@@ -51,6 +63,24 @@ network={
 Here we have setup two different WiFi credentials.
 The `development_wifi` will be preferred (higher priority) and the `pifi` network will be used when that is unavailable.
 Now on your raspberry-pi terminal you can run `sudo ifup wlan0` and it should load the configuration and try to connect to the wifi.
+
+__Install Erlang and Elixir__
+Run all of these commands as `root`:
+
+```
+echo "deb http://packages.erlang-solutions.com/debian wheezy contrib" >> /etc/apt/sources.list
+wget http://packages.erlang-solutions.com/debian/erlang_solutions.asc
+sudo apt-key add erlang_solutions.asc && rm erlang_solutions.asc
+sudo apt-get update
+apt-get install -y --force-yes erlang-mini upstart htop git
+mkdir /opt/elixir-1.1.1
+curl  -L https://github.com/elixir-lang/elixir/releases/download/v1.1.1/Precompiled.zip -o /opt/elixir-1.1.1/precompiled.zip
+cd /opt/elixir-1.1.1
+unzip precompiled.zip
+echo 'export PATH=/opt/elixir-1.1.1/bin:$PATH' >> /etc/bash.bashrc
+/opt/elixir-1.1.1/bin/mix local.hex --force
+/opt/elixir-1.1.1/bin/mix local.rebar --force
+```
 
 ## Loading the Software
 
