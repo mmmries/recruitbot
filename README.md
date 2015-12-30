@@ -11,6 +11,7 @@ A Project to make easily hackable robots that we can use for robotics competitio
 ## Preparing the Pi
 
 __Initial Operating System Setup__
+
 I'm using the [2015-11-21 Jessie Lite](https://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2015-11-24/2015-11-21-raspbian-jessie-lite.zip) image.
 After you have burned it to an SD card and booted it up you can login (username `pi`, password `raspberry`).
 Now run `sudo raspi-config` and make the following changes.
@@ -23,6 +24,7 @@ Now run `sudo raspi-config` and make the following changes.
 * Change the hostname to piN (I name my name `pi1`, `pi2`, etc)
 
 __Setup Wifi Credentials__
+
 Your Wifi credentials will depend on the network that you connect to.
 We like to bring our own WiFi router to events and always try to configure out robots to connect to that router.
 First you'll want to make sure that your `/etc/network/inerfaces` file looks like:
@@ -65,6 +67,7 @@ The `development_wifi` will be preferred (higher priority) and the `pifi` networ
 Now on your raspberry-pi terminal you can run `sudo ifup wlan0` and it should load the configuration and try to connect to the wifi.
 
 __Install Erlang and Elixir__
+
 Run all of these commands as `root`:
 
 ```
