@@ -14,7 +14,11 @@
       <rect class="light_bumper_right" display="none" fill="red" height="2" transform="rotate(45, 50, 50) translate(0, -47)" width="8" x="46" y="49"></rect>
     </svg>
   </div>
-  <div class="col-lg-3"></div>
+  <div class="col-lg-3">
+    <div class="battery_status">
+      🔋 <span class="battery_charge"></span> / <span class="battery_capacity"></span> (mAh)
+    </div>
+  </div>
 </div>
 
 <div class="jumbotron">

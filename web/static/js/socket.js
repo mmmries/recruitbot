@@ -48,6 +48,8 @@ channel.join()
   }).receive("error", resp => { console.log("Unable to join", resp) })
 
 channel.on("sensor_update", sensors => {
+  getByClass("battery_capacity").textContent = sensors.battery_capacity;
+  getByClass("battery_charge").textContent = sensors.battery_charge;
   getByClass("bumper_left").setAttribute("fill", sensors.bumper_left == 0 ? "black" : "red")
   getByClass("bumper_right").setAttribute("fill", sensors.bumper_right == 0 ? "black" : "red")
   getByClass("light_bumper_left").setAttribute("display", sensors.light_bumper_left == 0 ? "none" : "block")
