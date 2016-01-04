@@ -31,7 +31,8 @@ defmodule Recruitbot.DJSupervisor do
 
     dj_opts = Keyword.put(dj_opts, :report_to, publisher_pid)
     children = [
-      worker(Roombex.DJ, [dj_opts, [name: :dj]])
+      worker(Roombex.DJ, [dj_opts, [name: :dj]]),
+      worker(Recruitbot.Pulsar, []),
     ]
     supervise(children, strategy: :one_for_all)
   end
