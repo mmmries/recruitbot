@@ -20,7 +20,7 @@ config :logger, :console,
   metadata: [:request_id]
 
 config :recruitbot, :dj_opts,
-  tty: '/dev/ttyUSB0',
+  tty: System.get_env("SERIAL") || '/dev/ttyUSB0',
   speed: 115_200,
   listen_to: [:bumps_and_wheeldrops, :light_bumper],
   listen_interval: 33
