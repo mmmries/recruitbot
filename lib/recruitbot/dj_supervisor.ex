@@ -2,7 +2,9 @@ defmodule Recruitbot.DJSupervisor do
   use Supervisor
   require Logger
 
-  @bumper_sensors [
+  @sensors_to_publish [
+    :battery_capacity,
+    :battery_charge,
     :bumper_left,
     :bumper_right,
     :light_bumper_left,
@@ -13,11 +15,6 @@ defmodule Recruitbot.DJSupervisor do
     :light_bumper_right,
   ]
 
-  @battery_sensors [
-    :battery_capacity,
-    :battery_charge,
-  ]
-
   def start_link(dj_opts) do
     Supervisor.start_link(__MODULE__, dj_opts, name: __MODULE__)
   end
@@ -26,13 +23,11 @@ defmodule Recruitbot.DJSupervisor do
     publisher_pid = spawn_link(&publish_roomba_updates/0)
     Process.register(publisher_pid, :publisher)
 
-    :timer.send_interval(33, :dj, {:check_on, @bumper_sensors})
-    :timer.send_interval(200, :dj, {:check_on, @battery_sensors})
-
     dj_opts = Keyword.put(dj_opts, :report_to, publisher_pid)
     children = [
       worker(Roombex.DJ, [dj_opts, [name: :dj]]),
       worker(Recruitbot.Pulsar, []),
+      worker(Recruitbot.Whisker, []),
     ]
     supervise(children, strategy: :one_for_all)
   end
@@ -47,6 +42,6 @@ defmodule Recruitbot.DJSupervisor do
   end
 
   defp sensors_to_map(sensors) do
-    Map.take(sensors, @battery_sensors ++ @bumper_sensors)
+    Map.take(sensors, @sensors_to_publish)
   end
 end
