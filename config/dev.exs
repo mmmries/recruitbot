@@ -7,7 +7,7 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :recruitbot, Recruitbot.Endpoint,
-  http: [port: 4000],
+  http: [port: 5000],
   debug_errors: true,
   code_reloader: true,
   cache_static_lookup: false,
@@ -24,6 +24,9 @@ config :recruitbot, Recruitbot.Endpoint,
       ~r{web/templates/.*(eex)$}
     ]
   ]
+
+config :recruitbot, :checkin,
+  url: "http://localhost:4000/bot_checkin"
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

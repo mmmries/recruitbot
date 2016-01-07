@@ -11,9 +11,8 @@ defmodule Recruitbot do
     children = [
       # Start the endpoint when the application starts
       supervisor(Recruitbot.Endpoint, []),
-      # Here you could define other workers and supervisors as children
-      # worker(Recruitbot.Worker, [arg1, arg2, arg3]),
-      supervisor(Recruitbot.DJSupervisor, [dj_opts])
+      supervisor(Recruitbot.DJSupervisor, [dj_opts]),
+      worker(Recruitbot.Checkin, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

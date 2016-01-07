@@ -16,6 +16,9 @@ config :recruitbot, Recruitbot.Endpoint,
   url: [host: "example.com", port: 80],
   cache_static_manifest: "priv/static/manifest.json"
 
+config :recruitbot, :checkin,
+  url: "http://roombots.riesd.com/bot_checkin"
+
 # Do not print debug messages in production
 config :logger, level: :info
 
