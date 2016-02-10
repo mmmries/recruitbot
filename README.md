@@ -76,14 +76,14 @@ wget http://packages.erlang-solutions.com/debian/erlang_solutions.asc
 sudo apt-key add erlang_solutions.asc && rm erlang_solutions.asc
 sudo apt-get update
 apt-get install -y --force-yes erlang-mini upstart htop git
-mkdir /opt/elixir-1.1.1
-curl  -L https://github.com/elixir-lang/elixir/releases/download/v1.1.1/Precompiled.zip -o /opt/elixir-1.1.1/precompiled.zip
-cd /opt/elixir-1.1.1
+mkdir /opt/elixir-1.2.2
+curl  -L https://github.com/elixir-lang/elixir/releases/download/v1.2.2/Precompiled.zip -o /opt/elixir-1.2.2/precompiled.zip
+cd /opt/elixir-1.2.2
 unzip precompiled.zip
-echo 'export PATH=/opt/elixir-1.1.1/bin:$PATH' >> /etc/bash.bashrc
-export PATH=/opt/elixir-1.1.1/bin:$PATH
-/opt/elixir-1.1.1/bin/mix local.hex --force
-/opt/elixir-1.1.1/bin/mix local.rebar --force
+echo 'export PATH=/opt/elixir-1.2.2/bin:$PATH' >> /etc/bash.bashrc
+export PATH=/opt/elixir-1.2.2/bin:$PATH
+/opt/elixir-1.2.2/bin/mix local.hex --force
+/opt/elixir-1.2.2/bin/mix local.rebar --force
 ```
 
 Now reboot your pi so that upstart is running.
