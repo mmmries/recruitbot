@@ -24,6 +24,6 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 COPY . /app
 WORKDIR /app
-RUN mix hex.registry fetch && mix deps.get && mix compile
+RUN mix hex.registry fetch && mix deps.get && mix compile && mix phoenix.digest
 ENV PORT 80
 CMD elixir --name "homebody@$RESIN_DEVICE_UUID.local" --cookie pi -S mix phoenix.server --no-halt --no-deps-check
