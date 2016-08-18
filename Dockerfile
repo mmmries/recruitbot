@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     ca-certificates \
+    build-essential \
   && echo "deb http://packages.erlang-solutions.com/debian wheezy contrib" >> /etc/apt/sources.list \
   && curl 'http://packages.erlang-solutions.com/debian/erlang_solutions.asc' -o 'esolutions.asc' \
   && apt-key add esolutions.asc \
