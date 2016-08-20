@@ -12,12 +12,19 @@ defmodule Recruitbot.Whisker do
     :battery_charge,
   ]
 
+  @dead_reckoning_sensors [
+    :encoder_counts_left,
+    :encoder_counts_right,
+    :angle,
+    :distance,
+  ]
+
   def start_link() do
     GenServer.start_link(__MODULE__, nil)
   end
 
   def init(nil) do
-    :timer.send_interval(33, {:check_on, @bumper_sensors ++ @battery_sensors})
+    :timer.send_interval(33, {:check_on, @bumper_sensors ++ @battery_sensors ++ @dead_reckoning_sensors})
     {:ok, %{}}
   end
 
