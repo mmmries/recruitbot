@@ -15,8 +15,6 @@ defmodule Recruitbot.Whisker do
   @dead_reckoning_sensors [
     :encoder_counts_left,
     :encoder_counts_right,
-    :angle,
-    :distance,
   ]
 
   def start_link() do
