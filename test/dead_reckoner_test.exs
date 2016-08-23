@@ -39,6 +39,34 @@ defmodule Recruitbot.DeadReckonerTest do
     assert_in_delta whereami.y,                2000.0, 1.0
   end
 
+  test "moving through a 180° turn to the right starting above the origin" do
+    radius_left = 2117.5
+    radius_right = 1882.5
+    distance_left_wheel  = (1/2) * 2 * :math.pi * radius_left
+    distance_right_wheel = (1/2) * 2 * :math.pi * radius_right
+    left = distance_to_encoder_counts(distance_left_wheel)
+    right = distance_to_encoder_counts(distance_right_wheel)
+    whereami = %WhereAmI{x: 0.0, y: 2000.0}
+    |> update(%{encoder_counts_left: left, encoder_counts_right: right})
+    assert_in_delta whereami.heading,  :math.pi, 0.01
+    assert_in_delta whereami.x,             0.0, 2.0
+    assert_in_delta whereami.y,         -2000.0, 2.0
+  end
+
+  test "moving through a 180° turn to the right starting to the right of the origin facing down" do
+    radius_left = 2117.5
+    radius_right = 1882.5
+    distance_left_wheel  = (1/2) * 2 * :math.pi * radius_left
+    distance_right_wheel = (1/2) * 2 * :math.pi * radius_right
+    left = distance_to_encoder_counts(distance_left_wheel)
+    right = distance_to_encoder_counts(distance_right_wheel)
+    whereami = %WhereAmI{x: 4000.0, y: 0.0, heading: -0.5 * :math.pi}
+    |> update(%{encoder_counts_left: left, encoder_counts_right: right})
+    assert_in_delta whereami.heading, 0.5 * :math.pi, 0.01
+    assert_in_delta whereami.x,                  0.0, 2.0
+    assert_in_delta whereami.y,                  0.0, 2.0
+  end
+
   defp distance_to_encoder_counts(distance_in_mm) do
     (distance_in_mm * 508.8 / :math.pi / 72.0)
     |> Float.ceil
