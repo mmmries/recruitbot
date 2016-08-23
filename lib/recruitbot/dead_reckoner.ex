@@ -3,31 +3,33 @@ defmodule Recruitbot.DeadReckoner do
   @axle_length 235.0
 
     # lovingly borrowed from http://www.seattlerobotics.org/encoder/200010/dead_reckoning_article.html
-  def update(%WhereAmI{}=whereami, %{encoder_counts_left: count, encoder_counts_right: count}) do
-    distance = encoder_counts_to_distance(count)
-    x_delta = distance * :math.cos(whereami.heading)
-    y_delta = distance * :math.sin(whereami.heading)
-    %{whereami | x: whereami.x + x_delta, y: whereami.y + y_delta}
-  end
-
   def update(%WhereAmI{}=whereami, %{encoder_counts_left: left, encoder_counts_right: right}) do
-    cos_current = :math.cos(whereami.heading)
-    sin_current = :math.sin(whereami.heading)
-    dist_left = encoder_counts_to_distance(left)
-    dist_right = encoder_counts_to_distance(right)
-    right_minus_left = dist_right - dist_left
-    expr1 = @axle_length * (dist_right + dist_left) / 2.0 / (right_minus_left)
-    x_delta = expr1 * (:math.sin(right_minus_left / @axle_length + whereami.heading) - sin_current)
-    y_delta = -1 * expr1 * (:math.cos(right_minus_left / @axle_length + whereami.heading) - cos_current)
-    heading_delta = right_minus_left / @axle_length;
+    left_diff = left - whereami.encoder_counts_left
+    right_diff = right - whereami.encoder_counts_right
+    if left_diff == right_diff do
+      distance = encoder_counts_to_distance(left_diff)
+      x_delta = distance * :math.cos(whereami.heading)
+      y_delta = distance * :math.sin(whereami.heading)
+      %{whereami | x: whereami.x + x_delta, y: whereami.y + y_delta, encoder_counts_left: left, encoder_counts_right: right}
+    else
+      cos_current = :math.cos(whereami.heading)
+      sin_current = :math.sin(whereami.heading)
+      dist_left = encoder_counts_to_distance(left_diff)
+      dist_right = encoder_counts_to_distance(right_diff)
+      right_minus_left = dist_right - dist_left
+      expr1 = @axle_length * (dist_right + dist_left) / 2.0 / (right_minus_left)
+      x_delta = expr1 * (:math.sin(right_minus_left / @axle_length + whereami.heading) - sin_current)
+      y_delta = -1 * expr1 * (:math.cos(right_minus_left / @axle_length + whereami.heading) - cos_current)
+      heading_delta = right_minus_left / @axle_length;
 
-    %WhereAmI{
-      x: whereami.x + x_delta,
-      y: whereami.y + y_delta,
-      heading: clamp_heading(whereami.heading + heading_delta),
-      encoder_counts_left: left,
-      encoder_counts_right: right,
-    }
+      %WhereAmI{
+        x: whereami.x + x_delta,
+        y: whereami.y + y_delta,
+        heading: clamp_heading(whereami.heading + heading_delta),
+        encoder_counts_left: left,
+        encoder_counts_right: right,
+      }
+    end
   end
 
   defp clamp_heading(heading) do
