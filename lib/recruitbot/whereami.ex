@@ -1,3 +1,5 @@
+# distances are in millimeters
+# heading is measured in radians
 defmodule Recruitbot.WhereAmI do
   defstruct x: 0.0,
             y: 0.0,
