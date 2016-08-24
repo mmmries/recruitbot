@@ -61,6 +61,9 @@ defmodule Recruitbot.DeadReckoner do
   defp encoder_diff(previous, new) when previous < @near_lower_bound and new > @near_upper_bound do
     previous - (@max_encoder_count - new)
   end
+  defp encoder_diff(previous, new) when previous > @near_upper_bound and new < @near_lower_bound do
+    (@max_encoder_count + new) - previous
+  end
   defp encoder_diff(previous, new) do
     new - previous
   end

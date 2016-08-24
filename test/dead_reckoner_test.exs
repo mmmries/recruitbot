@@ -104,8 +104,15 @@ defmodule Recruitbot.DeadReckonerTest do
     assert_in_delta whereami.y,       0.0, 0.1
   end
 
-  @tag :pending
-  test "encoder counts rolling over"
+  test "encoder counts rolling over past the maximum" do
+    counts = distance_to_encoder_counts(750.0)
+    new_count = counts - (65535 - 65500)
+    whereami = %WhereAmI{encoder_counts_left: 65500, encoder_counts_right: 65500, x: -250.0}
+    |> update(%{encoder_counts_left: new_count, encoder_counts_right: new_count})
+    assert_in_delta whereami.heading, 0.0, 0.01
+    assert_in_delta whereami.x,     500.0, 0.1
+    assert_in_delta whereami.y,       0.0, 0.1
+  end
 
   defp distance_to_encoder_counts(distance_in_mm) do
     (distance_in_mm * 508.8 / :math.pi / 72.0)
