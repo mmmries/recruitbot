@@ -95,8 +95,15 @@ defmodule Recruitbot.DeadReckonerTest do
     assert_in_delta whereami.y,                  0.0, 1.0
   end
 
-  @tag :pending
-  test "moving backward"
+  test "moving backward" do
+    counts = distance_to_encoder_counts(750.0)
+    whereami = %WhereAmI{encoder_counts_left: 100, encoder_counts_right: 200, x: 250.0}
+    |> update(%{encoder_counts_left: 100 - counts, encoder_counts_right: 200 - counts})
+    assert_in_delta whereami.heading, 0.0, 0.01
+    assert_in_delta whereami.x,    -500.0, 0.1
+    assert_in_delta whereami.y,       0.0, 0.1
+  end
+
   @tag :pending
   test "encoder counts rolling over"
 
