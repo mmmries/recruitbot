@@ -84,8 +84,17 @@ defmodule Recruitbot.DeadReckonerTest do
     assert_in_delta whereami.y,               -1117.5, 1.0
   end
 
-  @tag :pending
-  test "turning in place"
+  test "turning in place" do
+    radius = 117.5 # half the distance between the wheels
+    distance = (1/4) * 2 * :math.pi * radius
+    left = 65535 - distance_to_encoder_counts(distance) # backwards 1/4 turn
+    right = distance_to_encoder_counts(distance) # forwards 1/4 turn
+    whereami = WhereAmI.init |> update(%{encoder_counts_left: left, encoder_counts_right: right})
+    assert_in_delta whereami.heading, 0.5 * :math.pi, 0.01
+    assert_in_delta whereami.x,                  0.0, 1.0
+    assert_in_delta whereami.y,                  0.0, 1.0
+  end
+
   @tag :pending
   test "moving backward"
   @tag :pending

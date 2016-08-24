@@ -1,10 +1,13 @@
 defmodule Recruitbot.DeadReckoner do
   alias Recruitbot.WhereAmI
   @axle_length 235.0
+  @max_encoder_count 65535
+  @near_upper_bound @max_encoder_count - 5000
+  @near_lower_bound 5000
 
   def update(%WhereAmI{}=whereami, %{encoder_counts_left: left, encoder_counts_right: right}) do
-    left_diff = left - whereami.encoder_counts_left
-    right_diff = right - whereami.encoder_counts_right
+    left_diff = encoder_diff(whereami.encoder_counts_left, left)
+    right_diff = encoder_diff(whereami.encoder_counts_right, right)
     updated_whereami(whereami, {left, right}, {left_diff, right_diff})
   end
 
@@ -53,5 +56,12 @@ defmodule Recruitbot.DeadReckoner do
 
   defp encoder_counts_to_distance(count) do
     count * :math.pi * 72.0 / 508.8
+  end
+
+  defp encoder_diff(previous, new) when previous < @near_lower_bound and new > @near_upper_bound do
+    previous - (@max_encoder_count - new)
+  end
+  defp encoder_diff(previous, new) do
+    new - previous
   end
 end
