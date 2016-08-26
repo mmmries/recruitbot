@@ -17,7 +17,7 @@ defmodule Recruitbot.Tracker do
   # Server Callbacks
   def init(nil) do
     state = %{
-      whereami: WhereAmI.init(DJ.sensors(:pid))
+      whereami: WhereAmI.init(DJ.sensors(:dj))
     }
     {:ok, state}
   end
