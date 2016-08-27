@@ -40,6 +40,10 @@ channel.join()
       console.log("safe")
       channel.push("safe", {})
     })
+    document.getElementById("position_reset").addEventListener("click", _event => {
+      console.log("position reset")
+      channel.push("position_reset", {})
+    })
     document.addEventListener("mouseup", function(ev){
       console.log("stop!")
       channel.push("drive", {velocity: 0, radius: 0})
@@ -58,6 +62,12 @@ channel.on("sensor_update", sensors => {
   getByClass("light_bumper_right").setAttribute("display", sensors.light_bumper_right == 0 ? "none" : "block")
   getByClass("light_bumper_right_front").setAttribute("display", sensors.light_bumper_right_front == 0 ? "none" : "block")
   getByClass("light_bumper_right_center").setAttribute("display", sensors.light_bumper_right_center == 0 ? "none" : "block")
+})
+
+channel.on("position_update", position => {
+  getByClass("position_x").textContent = position.x;
+  getByClass("position_y").textContent = position.x;
+  getByClass("position_heading").textContent = position.heading;
 })
 
 export default socket

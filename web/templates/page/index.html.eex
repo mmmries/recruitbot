@@ -1,5 +1,15 @@
 <div class="row marketing">
-  <div class="col-lg-3"></div>
+  <div class="col-lg-3">
+    <div class="position_status">
+      X: <span class="position_x"></span>mm
+      <br />
+      Y: <span class="position_y"></span>mm
+      <br />
+      Heading: <span class="position_heading"></span>rad
+      <br />
+      <button id="position_reset">Reset</button>
+    </div>
+  </div>
   <div class="col-lg-6">
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <circle cx="50" cy="50" fill="lightgrey" r="45" stroke="black"></circle>
