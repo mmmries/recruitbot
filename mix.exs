@@ -30,13 +30,12 @@ defmodule Recruitbot.Mixfile do
   defp deps do
     [
       {:cowboy, "~> 1.0"},
-      {:dialyze, path: "../sqlitex/deps/dialyze"},
       {:gettext, "~> 0.9"},
       {:httpoison, "~> 0.8.0"},
       {:phoenix, "~> 1.1.0"},
       {:phoenix_html, "~> 2.3"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:roombex, path: "~> 0.0.5"},
+      {:roombex, "~> 0.0.5"},
     ]
   end
 end
