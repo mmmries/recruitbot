@@ -12,6 +12,7 @@ defmodule Recruitbot.RoombaChannel do
   def handle_in("position_reset", _params, socket) do
     sensors = DJ.sensors(:dj)
     Tracker.reset(sensors)
+    send :publisher, {:roomba_status, sensors}
     {:reply, {:ok, %{}}, socket}
   end
   def handle_in("reset", %{}, socket) do
