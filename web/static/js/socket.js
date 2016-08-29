@@ -65,9 +65,9 @@ channel.on("sensor_update", sensors => {
 })
 
 channel.on("position_update", position => {
-  getByClass("position_x").textContent = position.x;
-  getByClass("position_y").textContent = position.x;
-  getByClass("position_heading").textContent = position.heading;
+  getByClass("position_x").textContent = position.x.toFixed(1);
+  getByClass("position_y").textContent = position.y.toFixed(1);
+  getByClass("position_heading").textContent = position.heading.toFixed(1);
 })
 
 export default socket
